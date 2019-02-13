@@ -4,10 +4,13 @@ var config = require('./config'),
 
 module.exports.start = function() {
   var app = express.init();
-  app.listen(process.env.PORT || 8080, function () {
-    console.log('App listening on port', this.address().port, app.settings.env);
+  let port = process.env.PORT;
+  if (port == null || port == "") {
+    port = config.port; }
+
     
-    
+  app.listen(port, function() {
+    console.log('App listening on port', port);
     
     
     //console.log('App listening on port', config.port);
